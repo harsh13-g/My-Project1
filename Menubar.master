@@ -1,0 +1,158 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Menubar.master.cs" Inherits="Menubar" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+  <!-- Favicons -->
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="Admin/Images/hlogo.jpg" />
+ 
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+      <a href="Index.aspx" class="logo d-flex align-items-center me-auto me-xl-0 ">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+          <asp:Repeater ID="rptlogo" runat="server">
+              <ItemTemplate>
+
+        <img src='Admin/Images/<%#Eval("h_logo") %>' class="rounded-circle" />
+                  
+              </ItemTemplate>
+          </asp:Repeater>
+        <h1><asp:Label ID="lbl_name" runat="server"></asp:Label></h1>
+        <span>.</span>
+      </a>
+
+      <!-- Nav Menu -->
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="Index.aspx" class="active">Home</a></li>
+          <li><a href="Rooms.aspx">Rooms</a></li>
+          <li><a href="About_Us.aspx">About-Us</a></li>
+          <li><a href="Contact_Us.aspx">Contact-Us</a></li>
+          <li><asp:HyperLink ID="link_bookings" runat="server" Text="Bookings" NavigateUrl="Booking.aspx"></asp:HyperLink></li>
+          <li><asp:HyperLink ID="link_profile" runat="server" Text="Profile" NavigateUrl="Myprofile.aspx"></asp:HyperLink></li>
+        </ul>
+
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav><!-- End Nav Menu -->
+        <asp:Button ID="btn_login" runat="server" CssClass="btn-getstarted" Visible="false" Text="Login" OnClick="btn_login_Click" />
+        <asp:Button ID="btn_logout" runat="server" CssClass="btn-getstarted" Visible="false" Text="Logout" OnClick="btn_logout_Click" />
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+<!-- End Testimonials Section -->
+
+    <!-- Recent-posts Section - Home Page -->
+    <!-- End Recent-posts Section -->
+
+    <!-- Contact Section - Home Page -->
+    <!-- End Contact Section -->
+      <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+  </main>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer" style="background-color: #6F9196;">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span><asp:Label ID="lbl_name2" runat="server"></asp:Label></span>
+          </a>
+          <p><asp:Label ID="lbl_det" runat="server"></asp:Label></p>
+          <div class="social-links d-flex mt-4">
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="Index.aspx">Home</a></li>
+            <li><a href="About_Us.aspx">About us</a></li>
+            <li><a href="Contact_Us.aspx">Contact-us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="Rooms.aspx">PLATINUM ROOMS</a></li>
+            <li><a href="Rooms.aspx">FAMILY ROOMS</a></li>
+            <li><a href="Rooms.aspx">PRESIDENTIAL SUITS</a></li>
+            
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p><asp:Label ID="lbl_addr" runat="server"></asp:Label></p>
+          
+          <p class="mt-4"><strong>Phone:</strong> <span><asp:Label ID="lbl_mob" runat="server"></asp:Label></span></p>
+          <p><strong>Email:</strong> <span><asp:Label ID="lbl_email" runat="server"></asp:Label></span></p>
+        </div>
+
+      </div>
+    </div>
+
+    
+
+  </footer><!-- End Footer -->
+
+  <!-- Scroll Top Button -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+    </div>
+    </form>
+</body>
+</html>
