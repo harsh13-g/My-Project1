@@ -1,104 +1,81 @@
-/* Buttons */
-
-.btn {
-  font-size: $btn-font-size;
-  line-height: 1;
-  font-family: $type1-bold;
-  i {
-    font-size: 1rem;
-  }
-  &.btn-rounded {
-    @include border-radius(50px);
-  }
-  &.btn-fw {
-    min-width: $button-fixed-width;
-  }
-  &.btn-sm {
-    font-size: $btn-font-size-sm;
-  }
-  &.btn-lg {
-    font-size: $btn-font-size-lg;
-  }
-  &.btn-xs {
-    padding: $btn-padding-y-xs $btn-padding-x-xs;
-    font-size: $btn-font-size-xs;
-  }
-  /* Buttons with only icons */
-  &.btn-icon {
-    width: 42px;
-    height: 42px;
-    padding: 0;
-  }
-  /* Buttons with icon and text */
-  &.btn-icon-text {
-    .btn-icon-prepend {
-      margin-right: .5rem;
-    }
-    .btn-icon-append {
-      margin-left: .5rem;
-    }
-  }
-  &.btn-social-icon {
-    width: 50px;
-    height: 50px;
-    padding: 0;
-  }
-}
-
-.btn-group {
-  .btn {
-    + .btn {
-      border-left: 0;
-    }
-  }
-}
-
-.btn-toolbar {
-  .btn-group {
-    +.btn-group {
-      @extend .ms-2;
-    }
-  }
-}
-/*social buttons*/
-@each $color, $value in $social-colors {
-  .btn-#{$color} {
-    @include social-button(social-color($color));
-  }
-  .btn-outline-#{$color} {
-    @include social-outline-button(social-color($color));
-  }
-}
-/* inverse buttons */
-@each $color, $value in $theme-colors {
-  .btn-inverse-#{$color} {
-    @include button-inverse-variant($value);
-  }
-  .btn-#{$color}:not(.btn-light) {
+@mixin social-button($color) {
+    background: $color;
     color: $white;
+  
     &:hover,
-    &:focus,
-    &:active {
+    &:focus {
+      background: darken($color, 10%);
       color: $white;
     }
-    &:focus,
-    &:active {
-      background: $value;
-      border-color: $value;
+    &.btn-social-icon-text {
+      padding: 0 1.5rem 0 0;
+      background: lighten($color, 10%);
+      i {
+        background: $color;
+        padding: .75rem;
+        display: inline-block;
+        margin-right: 1.5rem;
+      }
     }
-  }
-  .btn-outline-#{$color} {
-    &:hover,
-    &:focus,
-    &:active {
-      background: theme-gradient-color($color);
-      color: $black;
-    }
+}
+@mixin social-outline-button($color) {
+  border: 1px solid $color;
+  color: $color;
+  &:hover {
+    background: $color;
+    color: $white;
   }
 }
-/* gradient buttons */
-@each $color, $value in $theme-gradient-colors {
-  .btn-gradient-#{$color} {
-    @include button-gradient-variant($value);
-  }
+@mixin button-inverse-variant($color, $color-hover: $white) {
+    background-color: rgba($color, 0.2);
+    background-image: none;
+    border-color: rgba($color, 0);
+    &:not(.btn-inverse-light) {
+      color: $color;      
+    }
+    &:hover {
+      color: $color-hover;
+      background-color: $color;
+      border-color: $color;
+    }
+  
+    &.focus,
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($color, .5);
+    }
+  
+    &.disabled,
+    &:disabled {
+      color: $color;
+      background-color: transparent;
+    }
+  
+    &.active,
+    &:active,
+    .show > &.dropdown-toggle {
+      color: $color-hover;
+      background-color: $color;
+      border-color: $color;
+    }
+}
+@mixin button-gradient-variant($value) {
+    background: $value;
+    border: 0;
+    &:not([disabled]):not(.disabled):active,
+    &:not([disabled]):not(.disabled).active,
+    .show > &.dropdown-toggle {
+      background: $value;
+    }
+    &:hover {
+      opacity: .8;
+    }
+    &:not(.btn-gradient-light) {
+      color: $white;      
+      &:hover,
+      &:focus,
+      &:active {
+        color: $white;
+      }
+    }
+    @include transition(opacity .3s ease);
 }
